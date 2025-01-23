@@ -18,6 +18,7 @@ function App() {
     <div className="App">
       <Header/>
       <Routes>
+        <Route exact path="/" component={<ProductList />} />
         <Route index component={<ProductList />} />
         <Route path="form" component={<Form />} />
       </Routes>
