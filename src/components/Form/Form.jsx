@@ -19,7 +19,7 @@ const Form = () => {
     }
     // отправляем данные в обработку серверу
     window.Telegram.WebApp.sendData(JSON.stringify(data))
-    window.Telegram.WebApp.onClose()
+    window.Telegram.WebApp.close()
   }, [country, city, subject])
 
   //эффект навешивает прослушку на главную кнопку
