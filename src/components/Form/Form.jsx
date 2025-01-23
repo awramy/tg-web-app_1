@@ -19,6 +19,7 @@ const Form = () => {
     }
     // отправляем данные в обработку серверу
     tg.sendData(JSON.stringify(data))
+    tg.onClose()
   }, [country, city, subject])
 
   //эффект навешивает прослушку на главную кнопку
