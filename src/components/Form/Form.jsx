@@ -18,15 +18,15 @@ const Form = () => {
       subject
     }
     // отправляем данные в обработку серверу
-    window.Telegram.WebApp.sendData(JSON.stringify(data))
-    window.Telegram.WebApp.close()
+    tg.sendData(JSON.stringify(data))
+    tg.close()
   }, [country, city, subject])
 
   //эффект навешивает прослушку на главную кнопку
   useEffect(() => {
-    window.Telegram.WebApp.onEvent('mainButtonClicked', onSendData)
+    tg.onEvent('mainButtonClicked', onSendData)
     return () => {
-      window.Telegram.WebApp.offEvent('mainButtonClicked', onSendData)
+      tg.offEvent('mainButtonClicked', onSendData)
     }
   }, [onSendData])
   //эффект настраивает главную кнопку
