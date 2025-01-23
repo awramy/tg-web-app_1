@@ -19,8 +19,7 @@ const Form = () => {
     }
     // отправляем данные в обработку серверу
     tg.sendData(JSON.stringify(data))
-    tg.close()
-  }, [country, city, subject])
+  }, [country, city, subject, tg])
 
   //эффект навешивает прослушку на главную кнопку
   useEffect(() => {
@@ -28,13 +27,13 @@ const Form = () => {
     return () => {
       tg.offEvent('mainButtonClicked', onSendData)
     }
-  }, [onSendData])
+  }, [onSendData, tg])
   //эффект настраивает главную кнопку
   useEffect(() => {
     tg.MainButton.setParams({
       text: 'отправить данные'
     })
-  }, [])
+  }, [tg.MainButton])
   //эффект показывает гравную кнопку только если поля не пустые
   useEffect(() => {
     if(!city || !country) {
@@ -42,7 +41,7 @@ const Form = () => {
     } else {
       tg.MainButton.show()
     }
-  }, [country, city])
+  }, [country, city, tg.MainButton])
 
   //хэндлеры для стейтов
   const onChangeCountry = e => {
