@@ -19,7 +19,7 @@ const Form = () => {
     }
     // отправляем данные в обработку серверу
     tg.sendData(JSON.stringify(data))
-  }, [])
+  }, [country, city, subject])
 
   //эффект навешивает прослушку на главную кнопку
   useEffect(() => {
@@ -27,7 +27,7 @@ const Form = () => {
     return () => {
       tg.offEvent('mainButtonClicked', onSendData)
     }
-  })
+  }, [onSendData])
   //эффект настраивает главную кнопку
   useEffect(() => {
     tg.MainButton.setParams({
