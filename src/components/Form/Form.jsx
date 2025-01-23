@@ -1,5 +1,5 @@
 import './Form.css'
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import {useTelegram} from "../../hooks/useTelegram.js";
 
 
@@ -8,13 +8,33 @@ const Form = () => {
   const [city, setCity] = useState('')
   const [subject, setSubject] = useState('physical')
 
-  const { tg } = useTelegram();
+  const { tg } = useTelegram()
 
+  //сама функция для вызова в эффекте
+  const onSendData = useCallback(() => {
+    const  data = {
+      country,
+      city,
+      subject
+    }
+    // отправляем данные в обработку серверу
+    tg.sendData(JSON.stringify(data))
+  }, [])
+
+  //эффект навешивает прослушку на главную кнопку
+  useEffect(() => {
+    tg.onEvent('mainButtonClicked', onSendData)
+    return () => {
+      tg.offEvent('mainButtonClicked', onSendData)
+    }
+  })
+  //эффект настраивает главную кнопку
   useEffect(() => {
     tg.MainButton.setParams({
       text: 'отправить данные'
     })
   }, [])
+  //эффект показывает гравную кнопку только если поля не пустые
   useEffect(() => {
     if(!city || !country) {
       tg.MainButton.hide()
@@ -23,6 +43,7 @@ const Form = () => {
     }
   }, [country, city])
 
+  //хэндлеры для стейтов
   const onChangeCountry = e => {
     setCountry(e.target.value)
   }
