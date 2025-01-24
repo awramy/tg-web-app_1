@@ -1,7 +1,10 @@
+import {makeAutoObservable} from "mobx";
+
 export default class ProductStore {
   constructor() {
     this._products = []
     this._basket = []
+    makeAutoObservable(this)
   }
   setProducts(products) {
     this._products = products

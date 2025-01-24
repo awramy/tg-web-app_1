@@ -4,11 +4,14 @@ import {useContext, useEffect} from "react";
 import {Context} from "../../main.jsx";
 import {fetchDevices} from "../../http/productsAPI.js";
 import {useTelegram} from "../../hooks/useTelegram.js";
+import {observer} from "mobx-react-lite";
+import {Container} from "react-bootstrap";
 
 
-const ProductList = () => {
-  const product = useContext((Context))
+const ProductList = observer(() => {
+  const { product } = useContext((Context))
   const { tg } = useTelegram()
+  console.log(JSON.stringify(product))
 
   useEffect(() => {
     fetchDevices().then(data => product.setProducts(data))
@@ -33,17 +36,17 @@ const ProductList = () => {
   }
 
   return (
-    <div className={'list'}>
-      {product.products.map(item => (
+    <Container className='mt-3'>
+      {product?.products?.rows?.map(item =>
         <ProductItem
           key={item.id}
           product={item}
           anAdd={onAdd}
           className={'item'}
         />
-      ))}
-    </div>
+      )}
+    </Container>
   );
-};
+});
 
 export default ProductList;

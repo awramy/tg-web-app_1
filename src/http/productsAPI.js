@@ -7,6 +7,6 @@ const $host = axios.create({
 
 //получение списка всех device
 export const fetchDevices = async () => {
-  const { data } = await $host.get('api/device/getAll')
+  const { data } = await $host.get('getProducts')
   return data
 }
