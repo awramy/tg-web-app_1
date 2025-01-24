@@ -41,7 +41,7 @@ const ProductList = observer(() => {
         <ProductItem
           key={item.id}
           product={item}
-          anAdd={onAdd}
+          onAdd={onAdd}
           className={'item'}
         />
       )}

@@ -4,6 +4,7 @@ import {Card} from "react-bootstrap";
 
 // eslint-disable-next-line react/prop-types
 const ProductItem = ({product, className, onAdd}) => {
+  console.log(typeof(onAdd))
   const onAddHandler = () => {
     onAdd(product);
   }
