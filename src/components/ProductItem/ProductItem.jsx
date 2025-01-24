@@ -10,19 +10,18 @@ const ProductItem = ({product, className, onAdd}) => {
   }
   return (
     <Card className={'product ' + className}>
-      <Card.Body>
-        <Card.Img className='img img-fluid my-auto' src={import.meta.env.VITE_REACT_APP_API_URL + '/' + product.img}/>
-      </Card.Body>
-
-      <Card.Body>
+      <div className='p-2'>
+        <Card.Img className='img-fluid my-auto' src={import.meta.env.VITE_REACT_APP_API_URL + '/' + product.img}/>
+      </div>
+      <Card.Body className='card-body'>
         <Card.Title className='title'>{product.name}</Card.Title>
-        <div className={'price'}>
-          <span>Стоимость: <b>{product.price}</b></span>
+        <div className={' price'}>
+          <h5 className='w-75 text-center ps-1 py-1 rounded bg-warning'>{product.price} р</h5>
         </div>
+        <Button className={'add-btn'} onClick={onAddHandler}>
+          Добавить в корзину
+        </Button>
       </Card.Body>
-      <Button className={'add-btn'} onClick={onAddHandler}>
-        Добавить в корзину
-      </Button>
     </Card>
   );
 };

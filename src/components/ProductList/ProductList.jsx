@@ -36,15 +36,15 @@ const ProductList = observer(() => {
   }
 
   return (
-    <Container className='mt-3'>
-      {product?.products?.rows?.map(item =>
-        <ProductItem
-          key={item.id}
-          product={item}
-          onAdd={onAdd}
-          className={'item'}
-        />
-      )}
+    <Container className='mt-3 d-flex flex-row'>
+        {product?.products?.rows?.map(item =>
+          <ProductItem
+            key={item.id}
+            product={item}
+            onAdd={onAdd}
+            className={'item'}
+          />
+        )}
     </Container>
   );
 });
