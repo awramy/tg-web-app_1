@@ -6,7 +6,6 @@ import {Route, Routes} from "react-router-dom";
 import Form from "./components/Form/Form.jsx";
 import ProductList from "./components/ProductList/ProductList.jsx";
 
-
 function App() {
   const {tg} = useTelegram()
 

@@ -7,10 +7,9 @@ const Form = () => {
   const [country, setCountry] = useState('')
   const [city, setCity] = useState('')
   const [subject, setSubject] = useState('physical')
-
   const { tg } = useTelegram()
 
-  //сама функция для вызова в эффекте
+  //сама функция для вызова в эффекте, sendData обработается при кнопке keyboard!!!
   const onSendData = useCallback(() => {
     const  data = {
       country,
